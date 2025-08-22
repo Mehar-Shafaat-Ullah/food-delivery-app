@@ -5,7 +5,7 @@ export default function Home() {
         🍔 Food Delivery App
       </h1>
       <p style={{ marginBottom: "2rem" }}>
-        Order your favorite meals and get them delivered fast today!
+        Order your favorite meals and get them delivered fast today! hehehe
       </p>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
