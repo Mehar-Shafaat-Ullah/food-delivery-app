@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main style={{ fontFamily: "sans-serif", padding: "2rem" }}>
       <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1rem" }}>
-        🍔 Food Delivery App
+        🍔 Food Delivery Apppp
       </h1>
       <h1>Mehar</h1>
       <p style={{ marginBottom: "2rem" }}>
