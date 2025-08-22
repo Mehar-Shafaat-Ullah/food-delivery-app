@@ -4,6 +4,7 @@ export default function Home() {
       <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1rem" }}>
         🍔 Food Delivery App
       </h1>
+      <h1>Mehar</h1>
       <p style={{ marginBottom: "2rem" }}>
         Order your favorite meals and get them delivered fast today! hehehe
       </p>
