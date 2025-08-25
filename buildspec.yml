@@ -13,11 +13,11 @@ phases:
   post_build:
     commands:
       - docker push 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
-     - |
-       printf '{
-         "imageName": "%s",
-         "imageUri": "%s"
-       }' food-delivery-app-repo 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo > taskdef.json
+      - |
+        printf '{
+          "imageName": "%s",
+          "imageUri": "%s"
+        }' food-delivery-app-repo 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo > taskdef.json
 
       - cat taskdef.json
 
