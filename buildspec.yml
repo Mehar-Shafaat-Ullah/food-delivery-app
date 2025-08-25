@@ -12,17 +12,18 @@ phases:
       - docker tag food-delivery-app-repo:latest 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
 
   post_build:
-    commands:
-      - docker push 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
-      - |
-        echo '[
-          {
-            "name": "food-appp",
-            "imageUri": "650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"
-          }
-        ]' > imagedefinitions.json
-      - cat imagedefinitions.json
+  commands:
+    - docker push 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
+    - |
+      echo '[
+        {
+          "name": "food-appp",
+          "imageUri": "650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"
+        }
+      ]' > taskdef.json
+    - cat taskdef.json
 
 artifacts:
   files:
-    - imagedefinitions.json
+    - taskdef.json
+
