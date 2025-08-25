@@ -14,5 +14,3 @@ phases:
     commands:
       - docker push 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
 
-artifacts:
-
