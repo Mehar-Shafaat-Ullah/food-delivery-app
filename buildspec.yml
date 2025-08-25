@@ -13,4 +13,14 @@ phases:
   post_build:
     commands:
       - docker push 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
+      - printf '{\n  "imageName": "%s",\n  "imageUri": "%s"\n}' "react-ecs-app" "$IMAGE_URI" > taskdef.json
+      - cat taskdef.json
+
+artifacts:
+  files:
+     - taskdef.json
+  
+
+    
+
 
