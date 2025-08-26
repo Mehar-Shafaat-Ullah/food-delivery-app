@@ -27,4 +27,4 @@ phases:
 artifacts:
   files:
     - taskdef.json
-
+    - appspec.json  # needed for blue gereen which tells which serive, port and port to deploy
