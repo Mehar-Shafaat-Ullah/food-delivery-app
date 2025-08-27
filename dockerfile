@@ -8,7 +8,7 @@ RUN npm install
 
 # Copy rest of the code
 COPY . .
-
+# testing
 # Build Next.js app
 RUN npm run build
 
