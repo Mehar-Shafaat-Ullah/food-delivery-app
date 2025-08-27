@@ -1,15 +1,10 @@
-#test commit
-# Stage 1: Build
-FROM node:18 AS builder
+FROM public.ecr.aws/lambda/nodejs:18
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
+
 COPY . .
 RUN npm run build
 
-# Stage 2: Run
-FROM node:18-alpine
-WORKDIR /app
-COPY --from=builder /app ./
-EXPOSE 80
-CMD ["npm", "start"]
+CMD ["server.handler"]
