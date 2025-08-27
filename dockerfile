@@ -1,6 +1,6 @@
 FROM public.ecr.aws/lambda/nodejs:18
 
-WORKDIR /app
+WORKDIR /var/task
 
 # Copy dependencies and install
 COPY package*.json ./
