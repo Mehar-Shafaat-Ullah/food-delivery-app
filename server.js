@@ -1,23 +1,27 @@
-const serverless = require("serverless-http");
-const next = require("next");
-const express = require("express");
+const serverlessExpress = require('@vendia/serverless-express');
+const express = require('express');
+const next = require('next');
 
 const app = next({ dev: false });
 const handle = app.getRequestHandler();
 
-let server;
+let cachedHandler;
 
-async function createServer() {
-  if (!server) {
-    await app.prepare();
-    const expressApp = express();
-    expressApp.all("*", (req, res) => handle(req, res));
-    server = serverless(expressApp);
-  }
-  return server;
+async function startServer() {
+  await app.prepare();
+  const expressApp = express();
+
+  // Let Next.js handle all routes
+  expressApp.all('*', (req, res) => {
+    return handle(req, res);
+  });
+
+  return serverlessExpress({ app: expressApp });
 }
 
 exports.handler = async (event, context) => {
-  const srv = await createServer();
-  return srv(event, context);
+  if (!cachedHandler) {
+    cachedHandler = await startServer();
+  }
+  return cachedHandler(event, context);
 };
