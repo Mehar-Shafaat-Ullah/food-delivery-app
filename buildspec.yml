@@ -1,30 +1,37 @@
 version: 0.2
-# j
 
 phases:
   pre_build:
     commands:
+      - echo "Logging into Docker Hub"
       - echo "dckr_pat_rQMu1cZk_aZRBd_uIFptWOI92dI" | docker login -u meharshafaatullah099 --password-stdin
+      - echo "Logging into AWS ECR"
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 650012445623.dkr.ecr.us-east-1.amazonaws.com
 
   build:
     commands:
+      - echo "Building Docker image"
       - docker build -t food-delivery-app-repo .
       - docker tag food-delivery-app-repo:latest 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
 
   post_build:
     commands:
+      - echo "Pushing Docker image to ECR"
       - docker push 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
+      
+      # ECS-specific lines commented out for reference
+      #- |
+      #  echo '[{"name": "food-appp","imageUri": "650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"}]' > taskdef.json
+      #- cat taskdef.json
+      #- appspec.json  # needed for blue-green ECS deployment
+
+      - echo "Creating artifact for Lambda deployment"
       - |
-        echo '[
-          {
-            "name": "food-appp",
-            "imageUri": "650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"
-          }
-        ]' > taskdef.json
-      - cat taskdef.json
+        echo '[{"imageUri":"650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"}]' > imageDetail.json
+      - cat imageDetail.json
 
 artifacts:
   files:
-    - taskdef.json
-    - appspec.json  # needed for blue gereen which tells which serive, port and port to deploy
+    - imageDetail.json
+    # - taskdef.json   # ECS artifact commented out
+    # - appspec.json   # ECS artifact commented out
