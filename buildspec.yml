@@ -19,21 +19,21 @@ phases:
       - echo "Pushing Docker image to ECR"
       - docker push 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
       
-      # ECS-specific lines commented out for reference
-      #- |
-      #  echo '[{"name": "food-appp","imageUri": "650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"}]' > taskdef.json
-      #- cat taskdef.json
-      #- appspec.json  # needed for blue-green ECS deployment
-      - echo "Updating Lambda function with new image"
-      - aws lambda update-function-code --function-name food-lambda-2 --image-uri 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
-
-      - echo "Creating artifact for Lambda deployment"
+       ECS-specific lines commented out for reference
       - |
-        echo '[{"imageUri":"650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"}]' > imageDetail.json
-      - cat imageDetail.json
+        echo '[{"name": "food-appp","imageUri": "650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"}]' > taskdef.json
+      - cat taskdef.json
+      - appspec.json  # needed for blue-green ECS deployment
+     # - echo "Updating Lambda function with new image"
+      #- aws lambda update-function-code --function-name food-lambda-2 --image-uri 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
+
+      #- echo "Creating artifact for Lambda deployment"
+      #- |
+      #  echo '[{"imageUri":"650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"}]' > imageDetail.json
+     # - cat imageDetail.json
 
 artifacts:
-  files: []
+  files: #[]
    # - imageDetail.json
-    # - taskdef.json   # ECS artifact commented out
-    # - appspec.json   # ECS artifact commented out
+     - taskdef.json   # ECS artifact commented out
+     - appspec.json   # ECS artifact commented out
