@@ -6,7 +6,7 @@ export default function Home() {
       </h1>
       <h1>Mehar</h1>
       <p style={{ marginBottom: "2rem" }}>
-        Order your favorite meals and get them delivered fast today! woho 
+        Order your favorite meals and get them delivered fast today! wohoo
       </p>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
