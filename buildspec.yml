@@ -19,7 +19,7 @@ phases:
       - echo "Pushing Docker image to ECR"
       - docker push 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
       
-       ECS-specific lines commented out for reference
+      # ECS-specific lines commented out for reference
       - |
         echo '[{"name": "food-appp","imageUri": "650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"}]' > taskdef.json
       - cat taskdef.json
