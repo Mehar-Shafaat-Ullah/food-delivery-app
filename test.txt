@@ -1,4 +1,4 @@
 commiting test
-commiting for chcking blue green deployment through code deploy etc 
-testing
+commiting for chcking blue green deployment through code deploy etc
+
 
