@@ -23,7 +23,8 @@ phases:
       - |
         echo '[{"name": "food-appp","imageUri": "650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest"}]' > taskdef.json
       - cat taskdef.json
-      - cat appspec.json  # needed for blue-green ECS deployment
+      - cat appspec.json 
+      # needed for blue-green ECS deployment
      # - echo "Updating Lambda function with new image"
       #- aws lambda update-function-code --function-name food-lambda-2 --image-uri 650012445623.dkr.ecr.us-east-1.amazonaws.com/food-delivery-app-repo:latest
 
